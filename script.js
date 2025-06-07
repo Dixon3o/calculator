@@ -16,19 +16,18 @@ let operator;
 let secondNumber;
 
 function operate(){
-    let numOne = prompt('First number: ');
-    let numTwo = prompt('Second number: ');
-    let ope = prompt('+, -, * or /: ');
-    if(ope === '+'){
-        console.log(add(numOne, numTwo));
-    }else if(ope === '-'){
-        console.log(subtract(numOne, numTwo));
-    }else if(ope === '*'){
-        console.log(multiply(numOne, numTwo));
-    }else if (ope === '/'){
-        console.log(divide(numOne, numTwo));
+    firstNumber = prompt('First number: ');
+    secondNumber = prompt('Second number: ');
+    operator = prompt('+, -, * or /: ');
+    if(operator === '+'){
+        console.log(add(firstNumber, secondNumber));
+    }else if(operator === '-'){
+        console.log(subtract(firstNumber, secondNumber));
+    }else if(operator === '*'){
+        console.log(multiply(firstNumber, secondNumber));
+    }else if (operator === '/'){
+        console.log(divide(firstNumber, secondNumber));
     }else{
         console.log('Choose only between 4 basic math operations.');
     }
 }
-operate();

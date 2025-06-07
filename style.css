@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    margin: 50px auto; 
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 100px;
+}
+.firstRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8px;
+}
+button{
+    width: 50px;
+    height: 30px;
+    margin: 8px;
+    font-size: 20px;
+}
+.secondRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.thirdRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.zeroRow{
+    display: flex;
+    justify-content: center;
+}
+.otherButtons{
+    display: flex;
+    justify-content: center;
+}
