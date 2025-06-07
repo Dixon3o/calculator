@@ -30,7 +30,7 @@ html, body{
     padding-top: 8px;
 }
 button{
-    width: 50px;
+    width: 55px;
     height: 30px;
     margin: 8px;
     font-size: 20px;
@@ -50,6 +50,10 @@ button{
     justify-content: center;
 }
 .otherButtons{
+    display: flex;
+    justify-content: center;
+}
+.clearButton{
     display: flex;
     justify-content: center;
 }
