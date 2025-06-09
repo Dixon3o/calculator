@@ -52,18 +52,17 @@ function populateDisplay(){
                 display.textContent += e.target.textContent;
             }else if(['+', '-', '*', '/'].includes(e.target.textContent)){
                 if(!firstNumber) return;
-                if(firstNumber && secondNumber && operator){
+                if((firstNumber && secondNumber && operator) || (firstNumber && operator)){
                     result = operate(firstNumber, operator, secondNumber);
                     firstNumber = result.toString();
                     display.textContent = result;
-                    secondNumber = '';
+                    secondNumber = '';        
                 }
-                display.textContent = '';
                 operator = e.target.textContent;
                 isInteringSecondNum = true;
             }else if(!isNaN(e.target.textContent) && isInteringSecondNum ===true){
                 secondNumber += e.target.textContent;
-                display.textContent += e.target.textContent;
+                display.textContent = secondNumber;
             }else if(e.target.textContent === '=' && firstNumber && secondNumber && operator){
                 result = operate(firstNumber, operator, secondNumber);
                 if(typeof result === 'string'){
