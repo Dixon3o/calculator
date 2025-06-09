@@ -38,6 +38,14 @@ function populateDisplay(){
     
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
+            if(isNaN(display.textContent) && !isNaN(e.target.textContent)){
+                firstNumber = '';
+                secondNumber = '';
+                operator = '';
+                isInteringSecondNum = false;
+                result = '';
+                display.textContent = '';
+            }
             if(!isNaN(e.target.textContent) && isInteringSecondNum === false){
                 firstNumber += e.target.textContent;
                 display.textContent += e.target.textContent;
@@ -57,10 +65,18 @@ function populateDisplay(){
                 display.textContent += e.target.textContent;
             }else if(e.target.textContent === '=' && firstNumber && secondNumber && operator){
                 result = operate(firstNumber, operator, secondNumber);
+                if(typeof result === 'string'){
+                    display.textContent = result;
+                    firstNumber = '';
+                    isInteringSecondNum = false;
+                    operator='';
+                    secondNumber='';
+                    return;
+                }
                 firstNumber = result.toString();
                 isInteringSecondNum = false;
-                operator = '';
                 secondNumber = '';
+                operator = '';
                 display.textContent = result;
             }else if(e.target.textContent === 'Clear'){
                 firstNumber = '';
