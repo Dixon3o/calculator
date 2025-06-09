@@ -32,8 +32,9 @@ function operate(firstNumber, operator, secondNumber){
         return (divide(firstNumber, secondNumber));
     }
 }
-let display = document.querySelector('.displayText');
+
 function populateDisplay(){
+    let display = document.querySelector('.displayText');
     let buttons = document.querySelectorAll('button')
     
     buttons.forEach(button => {
