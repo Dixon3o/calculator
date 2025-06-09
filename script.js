@@ -9,7 +9,7 @@ function multiply(a, b){
 }
 function divide(a, b){
     if(+b === 0){
-        return 'do not divide with 0';
+        alert('Do not divide with zero');
     }
     return a/b;
 }
