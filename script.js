@@ -11,6 +11,7 @@ function divide(a, b){
     return a/b;
 }
 
+
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
@@ -37,14 +38,20 @@ function populateDisplay(){
             if(!isNaN(e.target.textContent) && isInteringSecondNum === false){
                 firstNumber += e.target.textContent;
                 display.textContent += e.target.textContent;
-            }else if(e.target.textContent === '+' || e.target.textContent === '-' || e.target.textContent ==='*' || e.target.textContent ==='/'){
+            }else if(['+', '-', '*', '/'].includes(e.target.textContent)){
+                if(firstNumber && secondNumber && operator){
+                    result = operate(firstNumber, operator, secondNumber);
+                    firstNumber = result.toString();
+                    display.textContent = result;
+                    secondNumber = '';
+                }
                 display.textContent = '';
                 operator = e.target.textContent;
                 isInteringSecondNum = true;
             }else if(!isNaN(e.target.textContent) && isInteringSecondNum ===true){
                 secondNumber += e.target.textContent;
                 display.textContent += e.target.textContent;
-            }else if(e.target.textContent === '='){
+            }else if(e.target.textContent === '=' && firstNumber && secondNumber && operator){
                 result = operate(firstNumber, operator, secondNumber);
                 firstNumber = result.toString();
                 isInteringSecondNum = false;
