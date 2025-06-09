@@ -11,33 +11,57 @@ function divide(a, b){
     return a/b;
 }
 
-let firstNumber;
-let operator;
-let secondNumber;
+let firstNumber = '';
+let operator = '';
+let secondNumber = '';
+let isInteringSecondNum = false;
+let result = '';
 
-function operate(){
-    firstNumber = prompt('First number: ');
-    secondNumber = prompt('Second number: ');
-    operator = prompt('+, -, * or /: ');
+function operate(firstNumber, operator, secondNumber){
     if(operator === '+'){
-        console.log(add(firstNumber, secondNumber));
+        return (add(firstNumber, secondNumber));
     }else if(operator === '-'){
-        console.log(subtract(firstNumber, secondNumber));
+        return (subtract(firstNumber, secondNumber));
     }else if(operator === '*'){
-        console.log(multiply(firstNumber, secondNumber));
+        return (multiply(firstNumber, secondNumber));
     }else if (operator === '/'){
-        console.log(divide(firstNumber, secondNumber));
-    }else{
-        console.log('Choose only between 4 basic math operations.');
+        return (divide(firstNumber, secondNumber));
     }
 }
-
+let display = document.querySelector('.displayText');
 function populateDisplay(){
     let buttons = document.querySelectorAll('button')
-    let display = document.querySelector('.displayText');
+    
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
-            display.textContent += e.target.textContent;
+            if(!isNaN(e.target.textContent) && isInteringSecondNum === false){
+                firstNumber += e.target.textContent;
+                display.textContent += e.target.textContent;
+            }else if(e.target.textContent === '+' || e.target.textContent === '-' || e.target.textContent ==='*' || e.target.textContent ==='/'){
+                display.textContent = '';
+                operator = e.target.textContent;
+                isInteringSecondNum = true;
+            }else if(!isNaN(e.target.textContent) && isInteringSecondNum ===true){
+                secondNumber += e.target.textContent;
+                display.textContent += e.target.textContent;
+            }else if(e.target.textContent === '='){
+                result = operate(firstNumber, operator, secondNumber);
+                firstNumber = result.toString();
+                isInteringSecondNum = false;
+                operator = '';
+                secondNumber = '';
+                display.textContent = result;
+            }else if(e.target.textContent === 'Clear'){
+                firstNumber = '';
+                secondNumber = '';
+                isInteringSecondNum = false;
+                operator = '';
+                result = '';
+                display.textContent = '';
+            }
+            
+            
         });
     });
 }
+populateDisplay();
