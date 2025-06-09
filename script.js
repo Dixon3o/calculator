@@ -14,7 +14,6 @@ function divide(a, b){
     return a/b;
 }
 
-
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
@@ -39,7 +38,7 @@ function populateDisplay(){
     
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
-            if(isNaN(display.textContent) && !isNaN(e.target.textContent)){
+            if((isNaN(display.textContent) && !isNaN(e.target.textContent))){
                 firstNumber = '';
                 secondNumber = '';
                 operator = '';
@@ -52,12 +51,25 @@ function populateDisplay(){
                 display.textContent += e.target.textContent;
             }else if(['+', '-', '*', '/'].includes(e.target.textContent)){
                 if(!firstNumber) return;
-                if((firstNumber && secondNumber && operator) || (firstNumber && operator)){
+                if(firstNumber && secondNumber && operator){
                     result = operate(firstNumber, operator, secondNumber);
                     firstNumber = result.toString();
                     display.textContent = result;
                     secondNumber = '';        
                 }
+                if(firstNumber && operator){
+                    if(operator === '+' || operator === '-'){
+                        result = operate(firstNumber, operator, secondNumber);
+                        firstNumber = result.toString();
+                        display.textContent = result;
+                    }else if(operator === '*' || operator === '/'){
+                        secondNumber = '1';
+                        result = operate(firstNumber, operator, secondNumber);
+                        firstNumber = result.toString();
+                        display.textContent = result;
+                        secondNumber ='';
+                    }
+                }         
                 operator = e.target.textContent;
                 isInteringSecondNum = true;
             }else if(!isNaN(e.target.textContent) && isInteringSecondNum ===true){
@@ -86,8 +98,6 @@ function populateDisplay(){
                 result = '';
                 display.textContent = '';
             }
-            
-            
         });
     });
 }
