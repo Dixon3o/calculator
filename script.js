@@ -31,3 +31,13 @@ function operate(){
         console.log('Choose only between 4 basic math operations.');
     }
 }
+
+function populateDisplay(){
+    let buttons = document.querySelectorAll('button')
+    let display = document.querySelector('.displayText');
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            display.textContent += e.target.textContent;
+        });
+    });
+}
