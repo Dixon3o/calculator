@@ -8,6 +8,9 @@ function multiply(a, b){
     return a*b;
 }
 function divide(a, b){
+    if(+b === 0){
+        return 'do not divide with 0';
+    }
     return a/b;
 }
 
@@ -39,6 +42,7 @@ function populateDisplay(){
                 firstNumber += e.target.textContent;
                 display.textContent += e.target.textContent;
             }else if(['+', '-', '*', '/'].includes(e.target.textContent)){
+                if(!firstNumber) return;
                 if(firstNumber && secondNumber && operator){
                     result = operate(firstNumber, operator, secondNumber);
                     firstNumber = result.toString();
