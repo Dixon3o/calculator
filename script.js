@@ -10,6 +10,7 @@ function multiply(a, b){
 function divide(a, b){
     if(+b === 0){
         alert('Do not divide with zero');
+        return null;
     }
     return a/b;
 }
@@ -53,6 +54,14 @@ function populateDisplay(){
                 if(!firstNumber) return;
                 if(firstNumber && secondNumber && operator){
                     result = operate(firstNumber, operator, secondNumber);
+                    if(result === null){
+                        display.textContent = '';
+                        firstNumber = '';
+                        secondNumber = '';
+                        operator = '';
+                        isInteringSecondNum = false;
+                        return;
+                    }
                     firstNumber = result.toString();
                     display.textContent = result;
                     secondNumber = '';        
@@ -60,11 +69,27 @@ function populateDisplay(){
                 if(firstNumber && operator){
                     if(operator === '+' || operator === '-'){
                         result = operate(firstNumber, operator, secondNumber);
+                        if(result === null){
+                            display.textContent = '';
+                            firstNumber = '';
+                            secondNumber = '';
+                            operator = '';
+                            isInteringSecondNum = false;
+                            return;
+                        }
                         firstNumber = result.toString();
                         display.textContent = result;
                     }else if(operator === '*' || operator === '/'){
                         secondNumber = '1';
                         result = operate(firstNumber, operator, secondNumber);
+                        if(result === null){
+                            display.textContent = '';
+                            firstNumber = '';
+                            secondNumber = '';
+                            operator = '';
+                            isInteringSecondNum = false;
+                            return;
+                        }
                         firstNumber = result.toString();
                         display.textContent = result;
                         secondNumber ='';
@@ -83,6 +108,14 @@ function populateDisplay(){
                     isInteringSecondNum = false;
                     operator='';
                     secondNumber='';
+                    return;
+                }
+                if(result === null){
+                    display.textContent = '';
+                    firstNumber = '';
+                    secondNumber = '';
+                    operator = '';
+                    isInteringSecondNum = false;
                     return;
                 }
                 firstNumber = result.toString();
