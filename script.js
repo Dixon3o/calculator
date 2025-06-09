@@ -46,6 +46,9 @@ function populateDisplay(){
                 result = '';
                 display.textContent = '';
             }
+            if(['+', '-', '*', '/'].includes(e.target.textContent) && ['+','-', '*','/'].includes(operator)){
+                return;
+            }
             if(!isNaN(e.target.textContent) && isInteringSecondNum === false){
                 firstNumber += e.target.textContent;
                 display.textContent += e.target.textContent;
